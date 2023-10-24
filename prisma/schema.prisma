@@ -30,9 +30,30 @@ model Dish {
   type dish_type?
   restaurantId Int
   restaurant Restaurant @relation(fields: [restaurantId], references: [id])
+  cart CartItem[]
 }
 
 enum dish_type {
   VEG
   NON_VEG
+}
+
+model User {
+  id  Int @id() @default(autoincrement())
+  name String 
+  email String
+  password String
+  address String @db.Text
+  mobile String @db.VarChar(15)
+  img String? @db.Text()
+  cart CartItem[]
+}
+
+model CartItem {
+  id  Int @id() @default(autoincrement())
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+  dishId Int 
+  dish Dish @relation(fields: [dishId], references: [id])
+  item_count Int
 }

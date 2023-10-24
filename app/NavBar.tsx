@@ -1,16 +1,23 @@
-"use client";
-import { Box, Button, Container, Flex, Heading, Text } from "@radix-ui/themes";
+import prisma from "@/prisma/client";
+import { Avatar, Button, Container, Flex, Heading } from "@radix-ui/themes";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import React from "react";
 import { PiHamburgerBold } from "react-icons/pi";
+import { BiCart } from "react-icons/bi";
 
-const NavBar = () => {
+const NavBar = async () => {
   const NavLinks = [
     { label: "restaurants", value: "Restaurants" },
     { label: "offers", value: "Offers" },
     { label: "help", value: "Help" },
   ];
+
+  const isLoggedIn = true;
+
+  const user = await prisma.user.findUnique({
+    where: {
+      id: 1,
+    },
+  });
 
   return (
     <nav>
@@ -34,9 +41,18 @@ const NavBar = () => {
                   {link.value}
                 </Link>
               ))}
-              <Link href={"/login"}>
-                <Button className="cursor-pointer">Login</Button>
-              </Link>
+              {isLoggedIn ? (
+                <Flex align={"center"} gap={"4"}>
+                  <Avatar fallback="?" src={user?.img || ""} />
+                  <Link href={`/cart/${1}`}>
+                    <BiCart className="text-4xl text-[var(--tomato-a11)] shadow-md p-2 rounded-full cursor-pointer" />
+                  </Link>
+                </Flex>
+              ) : (
+                <Link href={"/login"}>
+                  <Button className="cursor-pointer">Login</Button>
+                </Link>
+              )}
             </Flex>
           </Flex>
         </Container>
