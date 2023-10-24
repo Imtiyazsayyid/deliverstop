@@ -1,5 +1,5 @@
 import prisma from "@/prisma/client";
-import { Grid, ScrollArea, Text } from "@radix-ui/themes";
+import { Grid, Heading, ScrollArea, Text } from "@radix-ui/themes";
 import ResterauntCard from "./ResterauntCard";
 import SearchBar from "./SearchBar";
 
@@ -20,6 +20,9 @@ export default async function ResterauntsPage({ searchParams }: Props) {
 
   return (
     <main>
+      <Heading align={"center"} mt={"9"}>
+        Order From Your Favourite Places.
+      </Heading>
       <SearchBar />
       <ScrollArea
         type="always"
@@ -37,6 +40,8 @@ export default async function ResterauntsPage({ searchParams }: Props) {
                 rating={restaurant.rating}
                 address={restaurant.address}
                 img={restaurant.img}
+                description={restaurant.description}
+                averageCost={restaurant.averageCost}
               />
             ))}
           {restaurants?.length === 0 && (

@@ -16,4 +16,23 @@ model Restaurant {
   img String @db.Text
   address String @db.Text
   rating Int
+  description String? @db.Text
+  averageCost Int? 
+  dishes Dish[]
+}
+
+model Dish {
+  id  Int @id() @default(autoincrement())
+  name String @db.VarChar(255)
+  img String @db.Text
+  description String @db.Text
+  price Float
+  type dish_type?
+  restaurantId Int
+  restaurant Restaurant @relation(fields: [restaurantId], references: [id])
+}
+
+enum dish_type {
+  VEG
+  NON_VEG
 }

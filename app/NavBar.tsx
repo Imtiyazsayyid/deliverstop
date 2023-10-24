@@ -28,7 +28,7 @@ const NavBar = () => {
               {NavLinks.map((link) => (
                 <Link
                   key={link.label}
-                  href={link.label}
+                  href={"/" + link.label}
                   className="hover:text-[var(--tomato-a10)] transition-all"
                 >
                   {link.value}
