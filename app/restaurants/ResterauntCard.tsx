@@ -1,16 +1,9 @@
 import { Card, Heading, Inset, Text } from "@radix-ui/themes";
 import React from "react";
 import Rating from "../components/Rating";
+import { Restaurant } from "@prisma/client";
 
-interface Props {
-  id: number;
-  name: string;
-  address: string;
-  rating: number;
-  img: string;
-}
-
-const ResterauntCard = ({ id, name, address, rating, img }: Props) => {
+const ResterauntCard = ({ id, name, address, rating, img }: Restaurant) => {
   return (
     <Card className="h-96">
       <Inset side="top" className="h-1/2">

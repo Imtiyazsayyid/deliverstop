@@ -7,7 +7,7 @@ import { PiHamburgerBold } from "react-icons/pi";
 
 const NavBar = () => {
   const NavLinks = [
-    { label: "search", value: "Search" },
+    { label: "restaurants", value: "Restaurants" },
     { label: "offers", value: "Offers" },
     { label: "help", value: "Help" },
   ];
