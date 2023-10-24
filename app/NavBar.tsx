@@ -44,7 +44,7 @@ const NavBar = async () => {
               {isLoggedIn ? (
                 <Flex align={"center"} gap={"4"}>
                   <Avatar fallback="?" src={user?.img || ""} />
-                  <Link href={`/cart/${1}`}>
+                  <Link href={`/cart`}>
                     <BiCart className="text-4xl text-[var(--tomato-a11)] shadow-md p-2 rounded-full cursor-pointer" />
                   </Link>
                 </Flex>
